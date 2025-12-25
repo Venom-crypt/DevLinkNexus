@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevLink Nexus</title>
-   <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-   <style>
+    <style>
         * {
             margin: 0;
             padding: 0;
@@ -38,7 +38,6 @@
             position: relative;
         }
 
-        /* Animated background particles */
         body::before {
             content: '';
             position: fixed;
@@ -56,13 +55,10 @@
         }
 
         @keyframes particleFlow {
-
-            0%,
-            100% {
+            0%, 100% {
                 opacity: 0.5;
                 transform: translateY(0px);
             }
-
             50% {
                 opacity: 0.8;
                 transform: translateY(-30px);
@@ -78,7 +74,6 @@
             padding: 40px 20px;
         }
 
-        /* Header */
         .header {
             text-align: center;
             margin-bottom: 80px;
@@ -111,12 +106,17 @@
             line-height: 1.6;
         }
 
-        /* Theme toggle */
-        .theme-toggle {
+        .header-controls {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 100;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-control {
             background: rgba(22, 27, 34, 0.8);
             border: 1px solid rgba(88, 166, 255, 0.2);
             border-radius: 12px;
@@ -127,13 +127,16 @@
             backdrop-filter: blur(10px);
         }
 
-        .theme-toggle:hover {
+        .btn-control:hover {
             background: rgba(88, 166, 255, 0.1);
             border-color: rgba(88, 166, 255, 0.5);
             transform: scale(1.1);
         }
 
-        /* Cards Grid */
+        .btn-control:active {
+            transform: scale(0.95);
+        }
+
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -165,7 +168,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgb(0, 0, 0)gba(35, 134, 54, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0) 0%, rgba(35, 134, 54, 0.05) 100%);
             opacity: 0;
             transition: opacity var(--duration) var(--ease);
             z-index: 1;
@@ -181,7 +184,6 @@
             opacity: 1;
         }
 
-        /* Card content */
         .card-content {
             position: relative;
             z-index: 2;
@@ -236,57 +238,6 @@
         }
 
         .card-title {
-
-            font-size: 80px;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 4px 12px rgba(88, 166, 255, 0.2));
-        }
-
-        .card:nth-child(1) .card-image {
-            animation-delay: 0s;
-        }
-
-        .card:nth-child(2) .card-image {
-            animation-delay: 0.1s;
-        }
-
-        .card:nth-child(3) .card-image {
-            animation-delay: 0.2s;
-        }
-
-        .card:nth-child(4) .card-image {
-            animation-delay: 0.3s;
-        }
-
-        .card:nth-child(5) .card-image {
-            animation-delay: 0.4s;
-        }
-
-        .card:nth-child(6) .card-image {
-            animation-delay: 0.5s;
-        }
-
-        .card:nth-child(7) .card-image {
-            animation-delay: 0.6s;
-        }
-
-        .card:nth-child(8) .card-image {
-            animation-delay: 0.7s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-12px);
-            }
-        }
-
-        .card-title {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-primary);
@@ -299,7 +250,6 @@
             opacity: 0.85;
         }
 
-        /* Card hidden content */
         .card-hidden {
             position: absolute;
             top: 0;
@@ -342,7 +292,6 @@
             font-family: 'Courier New', monospace;
         }
 
-        /* Buttons */
         .button-group {
             display: flex;
             gap: 12px;
@@ -396,7 +345,6 @@
             box-shadow: 0 8px 20px rgba(35, 134, 54, 0.2);
         }
 
-        /* Toast notification */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -423,7 +371,6 @@
             pointer-events: auto;
         }
 
-        /* Footer */
         .footer {
             text-align: center;
             padding-top: 60px;
@@ -455,13 +402,11 @@
             transform: scale(1.2);
         }
 
-        /* Animations */
         @keyframes fadeInDown {
             from {
                 opacity: 0;
                 transform: translateY(-30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -473,7 +418,6 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -484,22 +428,27 @@
             from {
                 opacity: 0;
             }
-
             to {
                 opacity: 1;
             }
         }
 
-        /* Ripple effect */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
         @keyframes ripple {
             0% {
                 box-shadow: 0 0 0 0 rgba(88, 166, 255, 0.7);
             }
-
             70% {
                 box-shadow: 0 0 0 15px rgba(88, 166, 255, 0);
             }
-
             100% {
                 box-shadow: 0 0 0 0 rgba(88, 166, 255, 0);
             }
@@ -509,7 +458,6 @@
             animation: ripple 0.6s ease-out;
         }
 
-        /* Dark mode (default) */
         body.light-mode {
             --bg-primary: #f6f8fa;
             --bg-secondary: #ffffff;
@@ -544,7 +492,367 @@
             border-color: rgba(9, 105, 218, 0.6);
         }
 
-        /* Responsive */
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            animation: fadeIn 300ms var(--ease);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(22, 27, 34, 0.95);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 300ms var(--ease);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(88, 166, 255, 0.1);
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--duration) var(--ease);
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background: rgba(88, 166, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: rgba(88, 166, 255, 0.5);
+        }
+
+        .edit-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .edit-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .edit-input-group {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .edit-input {
+            flex: 1;
+            padding: 10px 12px;
+            background: rgba(13, 17, 23, 0.5);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: all var(--duration) var(--ease);
+            font-family: inherit;
+        }
+
+        .edit-input:focus {
+            outline: none;
+            border-color: rgba(88, 166, 255, 0.6);
+            background: rgba(88, 166, 255, 0.05);
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
+        }
+
+        .edit-input::placeholder {
+            color: rgba(139, 148, 158, 0.6);
+        }
+
+        .platform-badge {
+            background: rgba(88, 166, 255, 0.1);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(88, 166, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .btn-modal {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            background: rgba(88, 166, 255, 0.1);
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration) var(--ease);
+            flex: 1;
+        }
+
+        .btn-modal:hover {
+            background: rgba(88, 166, 255, 0.2);
+            border-color: rgba(88, 166, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-save {
+            background: rgba(35, 134, 54, 0.15);
+            border-color: rgba(35, 134, 54, 0.4);
+            color: #3fb950;
+        }
+
+        .btn-save:hover {
+            background: rgba(35, 134, 54, 0.25);
+            border-color: rgba(35, 134, 54, 0.6);
+            box-shadow: 0 8px 20px rgba(35, 134, 54, 0.2);
+        }
+
+        .btn-cancel {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: rgba(88, 166, 255, 0.3);
+        }
+
+        body.light-mode .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(9, 105, 218, 0.2);
+        }
+
+        body.light-mode .edit-input {
+            background: rgba(9, 105, 218, 0.05);
+            border-color: rgba(9, 105, 218, 0.2);
+            color: var(--text-primary);
+        }
+
+        body.light-mode .edit-input:focus {
+            border-color: rgba(9, 105, 218, 0.6);
+            background: rgba(9, 105, 218, 0.1);
+            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+        }
+
+        body.light-mode .platform-badge {
+            background: rgba(9, 105, 218, 0.1);
+            border-color: rgba(9, 105, 218, 0.3);
+            color: var(--accent);
+        }
+
+        /* Modal Divider */
+        .modal-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(88, 166, 255, 0.3), transparent);
+            margin: 24px 0;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Add Platform Section */
+        .add-platform-section {
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+            gap: 12px;
+        }
+
+        .btn-add {
+            background: rgba(35, 134, 54, 0.15);
+            border-color: rgba(35, 134, 54, 0.4);
+            color: #3fb950;
+            width: 100%;
+            margin-top: 12px;
+        }
+
+        .btn-add:hover {
+            background: rgba(35, 134, 54, 0.25);
+            border-color: rgba(35, 134, 54, 0.6);
+            box-shadow: 0 8px 20px rgba(35, 134, 54, 0.2);
+        }
+
+        /* Delete Section */
+        .delete-section {
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        .delete-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 8px;
+        }
+
+        .delete-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .delete-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .delete-list::-webkit-scrollbar-thumb {
+            background: rgba(88, 166, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .delete-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(88, 166, 255, 0.5);
+        }
+
+        .delete-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: rgba(88, 166, 255, 0.05);
+            border: 1px solid rgba(88, 166, 255, 0.15);
+            border-radius: 8px;
+            transition: all var(--duration) var(--ease);
+        }
+
+        .delete-item:hover {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: rgba(88, 166, 255, 0.3);
+        }
+
+        .delete-item-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .delete-item-name img {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+
+        .btn-delete {
+            background: rgba(255, 84, 89, 0.15);
+            border: 1px solid rgba(255, 84, 89, 0.4);
+            color: #ff5459;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration) var(--ease);
+        }
+
+        .btn-delete:hover {
+            background: rgba(255, 84, 89, 0.25);
+            border-color: rgba(255, 84, 89, 0.6);
+            box-shadow: 0 4px 12px rgba(255, 84, 89, 0.2);
+        }
+
+        body.light-mode .delete-item {
+            background: rgba(9, 105, 218, 0.05);
+            border-color: rgba(9, 105, 218, 0.15);
+        }
+
+        body.light-mode .delete-item:hover {
+            background: rgba(9, 105, 218, 0.1);
+            border-color: rgba(9, 105, 218, 0.3);
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2.5rem;
@@ -571,9 +879,19 @@
                 font-size: 1.2rem;
             }
 
-            .theme-toggle {
+            .header-controls {
                 top: 16px;
                 right: 16px;
+                gap: 8px;
+            }
+
+            .btn-control {
+                padding: 8px 12px;
+                font-size: 1rem;
+            }
+
+            .modal-content {
+                padding: 24px;
             }
 
             .toast {
@@ -622,13 +940,89 @@
                 padding: 8px 16px;
                 font-size: 0.8rem;
             }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .modal-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .edit-input-group {
+                flex-direction: column;
+            }
+
+            .platform-badge {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+    <!-- Header Controls -->
+    <div class="header-controls">
+        <button class="btn-control" id="editBtn" title="Edit links and names">✏️</button>
+        <button class="btn-control" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Social Links</h2>
+                <button class="modal-close" id="modalClose" title="Close modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Edit fields will be populated by JavaScript -->
+            </div>
+            <div class="modal-divider"></div>
+
+            <!-- Add New Platform Section -->
+            <div class="add-platform-section">
+                <h3 class="section-title">Add New Platform</h3>
+                <div class="modal-body" id="newPlatformForm">
+                    <div class="edit-group">
+                        <div class="edit-label">Platform Name</div>
+                        <input type="text" class="edit-input" id="newName" placeholder="e.g., Twitter, YouTube, TikTok">
+                    </div>
+                    <div class="edit-group">
+                        <div class="edit-label">Username</div>
+                        <input type="text" class="edit-input" id="newUsername" placeholder="Your username">
+                    </div>
+                    <div class="edit-group">
+                        <div class="edit-label">Profile URL</div>
+                        <input type="text" class="edit-input" id="newUrl" placeholder="https://example.com/username">
+                    </div>
+                    <div class="edit-group">
+                        <div class="edit-label">Description</div>
+                        <input type="text" class="edit-input" id="newDescription" placeholder="e.g., Social Media, Video Streaming">
+                    </div>
+                    <div class="edit-group">
+                        <div class="edit-label">Logo Image URL</div>
+                        <input type="text" class="edit-input" id="newImage" placeholder="https://example.com/logo.png">
+                    </div>
+                    <button class="btn-modal btn-add" id="addPlatformBtn">+ Add Platform</button>
+                </div>
+            </div>
+
+            <!-- Delete Platforms Section -->
+            <div class="delete-section">
+                <h3 class="section-title">Delete Platforms</h3>
+                <div class="delete-list" id="deleteList">
+                    <!-- Delete buttons will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-modal btn-cancel" id="cancelBtn">Cancel</button>
+                <button class="btn-modal btn-save" id="saveBtn">Save Changes</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Container -->
     <div class="container">
@@ -641,186 +1035,8 @@
         </div>
 
         <!-- Cards Grid -->
-        <div class="cards-grid">
-            <!-- LinkedIn -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./linkedin.jpg" class="image-properties"></div>
-                    <div class="card-title">LinkedIn</div>
-                    <div class="card-description">Professional Network</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">LinkedIn</div>
-                    <div class="profile-username">its-ajay-raj</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy"
-                            onclick="copyToClipboard('https://www.linkedin.com/in/its-ajay-raj/')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://www.linkedin.com/in/its-ajay-raj/" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- GitHub -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./github.jpg" class="image-properties"></div>
-                    <div class="card-title">GitHub</div>
-                    <div class="card-description">Open Source Projects</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">GitHub</div>
-                    <div class="profile-username">tech-master-hub</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy" onclick="copyToClipboard('https://github.com/tech-master-hub')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://github.com/tech-master-hub" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LeetCode -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./leetcode.png" class="image-properties"></div>
-                    <div class="card-title">LeetCode</div>
-                    <div class="card-description">DSA & Algorithms</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">LeetCode</div>
-                    <div class="profile-username">_dev_Ajay</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy" onclick="copyToClipboard('https://leetcode.com/u/_dev_Ajay/')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://leetcode.com/u/_dev_Ajay/" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- HackerRank -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./hackerrank.png" class="image-properties"></div>
-                    <div class="card-title">HackerRank</div>
-                    <div class="card-description">Coding Challenges</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">HackerRank</div>
-                    <div class="profile-username">rajajay34036</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy"
-                            onclick="copyToClipboard('https://www.hackerrank.com/profile/rajajay34036')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://www.hackerrank.com/profile/rajajay34036" target="_blank"
-                            rel="noopener noreferrer" class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CodeForces -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./codeforces.svg" class="image-properties"></div>
-                    <div class="card-title">CodeForces</div>
-                    <div class="card-description">Competitive Programming</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">CodeForces</div>
-                    <div class="profile-username">ajay34036</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy"
-                            onclick="copyToClipboard('https://codeforces.com/profile/ajay34036')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://codeforces.com/profile/ajay34036" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CodeChef -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./codechef.jpeg" class="image-properties"></div>
-                    <div class="card-title">CodeChef</div>
-                    <div class="card-description">Problem Solving</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">CodeChef</div>
-                    <div class="profile-username">dev_ajay_34036</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy"
-                            onclick="copyToClipboard('https://www.codechef.com/users/dev_ajay_34036')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://www.codechef.com/users/dev_ajay_34036" target="_blank"
-                            rel="noopener noreferrer" class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instagram -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./instagram.jpg" class="image-properties"></div>
-                    <div class="card-title">Instagram</div>
-                    <div class="card-description">Daily Updates</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">Instagram</div>
-                    <div class="profile-username">ft.ajay.s</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy" onclick="copyToClipboard('https://www.instagram.com/ft.ajay.s/')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://www.instagram.com/ft.ajay.s/" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Facebook -->
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-image"><img src="./facebook.jpg" class="image-properties"></div>
-                    <div class="card-title">Facebook</div>
-                    <div class="card-description">Connect & Chat</div>
-                </div>
-                <div class="card-hidden">
-                    <div class="hidden-title">Facebook</div>
-                    <div class="profile-username">Ajay34036</div>
-                    <div class="button-group">
-                        <button class="btn btn-copy" onclick="copyToClipboard('https://www.facebook.com/Ajay34036/')">
-                            📋 Copy Link
-                        </button>
-                        <a href="https://www.facebook.com/Ajay34036/" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-visit">
-                            🔗 Visit Profile
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="cards-grid" id="cardsGrid">
+            <!-- Cards will be populated by JavaScript -->
         </div>
 
         <!-- Footer -->
@@ -834,13 +1050,82 @@
     <div class="toast" id="toast"></div>
 
     <script>
+        // Default social media data
+        const defaultData = [
+            {
+                id: 'linkedin',
+                name: 'LinkedIn',
+                username: 'its-ajay-raj',
+                url: 'https://www.linkedin.com/in/its-ajay-raj/',
+                image: './linkedin.jpg',
+                description: 'Professional Network'
+            },
+            {
+                id: 'github',
+                name: 'GitHub',
+                username: 'tech-master-hub',
+                url: 'https://github.com/tech-master-hub',
+                image: './github.jpg',
+                description: 'Open Source Projects'
+            },
+            {
+                id: 'leetcode',
+                name: 'LeetCode',
+                username: '_dev_Ajay',
+                url: 'https://leetcode.com/u/_dev_Ajay/',
+                image: './leetcode.png',
+                description: 'DSA & Algorithms'
+            },
+            {
+                id: 'hackerrank',
+                name: 'HackerRank',
+                username: 'rajajay34036',
+                url: 'https://www.hackerrank.com/profile/rajajay34036',
+                image: './hackerrank.png',
+                description: 'Coding Challenges'
+            },
+            {
+                id: 'codeforces',
+                name: 'CodeForces',
+                username: 'ajay34036',
+                url: 'https://codeforces.com/profile/ajay34036',
+                image: './codeforces.svg',
+                description: 'Competitive Programming'
+            },
+            {
+                id: 'codechef',
+                name: 'CodeChef',
+                username: 'dev_ajay_34036',
+                url: 'https://www.codechef.com/users/dev_ajay_34036',
+                image: './codechef.jpeg',
+                description: 'Problem Solving'
+            },
+            {
+                id: 'instagram',
+                name: 'Instagram',
+                username: 'ft.ajay.s',
+                url: 'https://www.instagram.com/ft.ajay.s/',
+                image: './instagram.jpg',
+                description: 'Daily Updates'
+            },
+            {
+                id: 'facebook',
+                name: 'Facebook',
+                username: 'Ajay34036',
+                url: 'https://www.facebook.com/Ajay34036/',
+                image: './facebook.jpg',
+                description: 'Connect & Chat'
+            }
+        ];
+
+        // Initialize data from localStorage or use defaults
+        let socialData = JSON.parse(localStorage.getItem('socialData')) || defaultData;
+
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
         const body = document.body;
-
-        // Check for saved theme preference or default to dark mode
         const currentTheme = localStorage.getItem('theme') || 'dark';
+
         if (currentTheme === 'light') {
             body.classList.add('light-mode');
             themeToggle.textContent = '☀️';
@@ -853,7 +1138,176 @@
             themeToggle.textContent = newTheme === 'light' ? '☀️' : '🌙';
         });
 
-        // Copy to Clipboard Function
+        // Render Cards
+        function renderCards() {
+            const cardsGrid = document.getElementById('cardsGrid');
+            cardsGrid.innerHTML = '';
+
+            socialData.forEach(platform => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-content">
+                        <div class="card-image"><img src="${platform.image}" class="image-properties" alt="${platform.name}"></div>
+                        <div class="card-title">${platform.name}</div>
+                        <div class="card-description">${platform.description}</div>
+                    </div>
+                    <div class="card-hidden">
+                        <div class="hidden-title">${platform.name}</div>
+                        <div class="profile-username">${platform.username}</div>
+                        <div class="button-group">
+                            <button class="btn btn-copy" onclick="copyToClipboard('${platform.url.replace(/'/g, "\\'")}')">
+                                📋 Copy Link
+                            </button>
+                            <a href="${platform.url}" target="_blank" rel="noopener noreferrer" class="btn btn-visit">
+                                🔗 Visit Profile
+                            </a>
+                        </div>
+                    </div>
+                `;
+                cardsGrid.appendChild(card);
+            });
+        }
+
+        // Modal Functions
+        const modalOverlay = document.getElementById('modalOverlay');
+        const editBtn = document.getElementById('editBtn');
+        const modalClose = document.getElementById('modalClose');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const modalBody = document.getElementById('modalBody');
+
+        function openEditModal() {
+            modalBody.innerHTML = '';
+            socialData.forEach(platform => {
+                const group = document.createElement('div');
+                group.className = 'edit-group';
+                group.innerHTML = `
+                    <div class="edit-label">${platform.name}</div>
+                    <div class="edit-input-group">
+                        <span class="platform-badge">${platform.name}</span>
+                        <input type="text" class="edit-input" placeholder="Username" value="${platform.username}" data-field="username" data-id="${platform.id}">
+                        <input type="text" class="edit-input" placeholder="URL" value="${platform.url}" data-field="url" data-id="${platform.id}" style="flex: 2;">
+                    </div>
+                </div>
+            `;
+                modalBody.appendChild(group);
+            });
+            modalOverlay.classList.add('active');
+        }
+
+        function closeEditModal() {
+            modalOverlay.classList.remove('active');
+        }
+
+        editBtn.addEventListener('click', openEditModal);
+        modalClose.addEventListener('click', closeEditModal);
+        cancelBtn.addEventListener('click', closeEditModal);
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeEditModal();
+            }
+        });
+
+        saveBtn.addEventListener('click', () => {
+            const inputs = document.querySelectorAll('#modalBody .edit-input');
+            inputs.forEach(input => {
+                const id = input.dataset.id;
+                const field = input.dataset.field;
+                const platformIndex = socialData.findIndex(p => p.id === id);
+                if (platformIndex !== -1) {
+                    socialData[platformIndex][field] = input.value;
+                }
+            });
+
+            localStorage.setItem('socialData', JSON.stringify(socialData));
+            renderCards();
+            closeEditModal();
+            showToast('Changes saved! ✓');
+        });
+
+        // Add Platform Function
+        const addPlatformBtn = document.getElementById('addPlatformBtn');
+        const newNameInput = document.getElementById('newName');
+        const newUsernameInput = document.getElementById('newUsername');
+        const newUrlInput = document.getElementById('newUrl');
+        const newDescriptionInput = document.getElementById('newDescription');
+        const newImageInput = document.getElementById('newImage');
+
+        addPlatformBtn.addEventListener('click', () => {
+            const name = newNameInput.value.trim();
+            const username = newUsernameInput.value.trim();
+            const url = newUrlInput.value.trim();
+            const description = newDescriptionInput.value.trim();
+            const image = newImageInput.value.trim();
+
+            // Validation
+            if (!name || !username || !url || !description || !image) {
+                showToast('⚠️ Please fill all fields');
+                return;
+            }
+
+            // Check if platform already exists
+            if (socialData.find(p => p.id === name.toLowerCase())) {
+                showToast('Platform already exists!');
+                return;
+            }
+
+            // Create new platform object
+            const newPlatform = {
+                id: name.toLowerCase().replace(/\s+/g, '-'),
+                name: name,
+                username: username,
+                url: url,
+                description: description,
+                image: image
+            };
+
+            // Add to data
+            socialData.push(newPlatform);
+            localStorage.setItem('socialData', JSON.stringify(socialData));
+
+            // Clear inputs
+            newNameInput.value = '';
+            newUsernameInput.value = '';
+            newUrlInput.value = '';
+            newDescriptionInput.value = '';
+            newImageInput.value = '';
+
+            // Refresh delete list
+            populateDeleteList();
+            showToast('✓ Platform added! Click Save to apply.');
+        });
+
+        // Populate Delete List
+        function populateDeleteList() {
+            const deleteList = document.getElementById('deleteList');
+            deleteList.innerHTML = '';
+
+            socialData.forEach(platform => {
+                const item = document.createElement('div');
+                item.className = 'delete-item';
+                item.innerHTML = `
+                    <div class="delete-item-name">
+                        <img src="${platform.image}" alt="${platform.name}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22%3E%3Crect fill=%22%23888%22 width=%2220%22 height=%2220%22/%3E%3C/svg%3E'">
+                        <span>${platform.name}</span>
+                    </div>
+                    <button class="btn-delete" onclick="deletePlatform('${platform.id}')">🗑️ Delete</button>
+                `;
+                deleteList.appendChild(item);
+            });
+        }
+
+        // Delete Platform Function
+        function deletePlatform(platformId) {
+            socialData = socialData.filter(p => p.id !== platformId);
+            localStorage.setItem('socialData', JSON.stringify(socialData));
+            populateDeleteList();
+            showToast('✓ Platform marked for deletion. Click Save to apply.');
+        }
+
+        // Copy to Clipboard
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 showToast('Link Copied! ✓');
@@ -874,38 +1328,21 @@
         }
 
         // Keyboard Accessibility
-        document.querySelectorAll('.card').forEach(card => {
-            card.setAttribute('role', 'button');
-            card.setAttribute('tabindex', '0');
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const copyBtn = card.querySelector('.btn-copy');
-                    if (copyBtn) copyBtn.click();
-                }
-            });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeEditModal();
+            }
         });
 
-        // Smooth scroll behavior for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        // Enhanced openEditModal to populate delete list
+        const originalOpenEditModal = openEditModal;
+        openEditModal = function() {
+            originalOpenEditModal();
+            populateDeleteList();
+        };
 
-        // Add click ripple effect
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('click', function (e) {
-                const rect = this.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                // Ripple effect already handled by CSS animation
-            });
-        });
+        // Initialize
+        renderCards();
     </script>
 </body>
 
